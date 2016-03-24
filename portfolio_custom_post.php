@@ -168,7 +168,7 @@ function portfolio_short(){
     $string = '';
     $query = new WP_Query( $args );
 		if( $query->have_posts() ){
-        $string .= '<ul>';
+        $string .= '<ul class="display-port">';
         while( $query->have_posts() ){
 			$query->the_post();
 			$string .= '<li><a href="'.get_permalink().'">' . get_the_post_thumbnail() . '</a></li>';
@@ -180,6 +180,12 @@ function portfolio_short(){
 }
 add_shortcode( 'portfolio', 'portfolio_short' );
 
+// REGISTER STYLING
 
+add_action( 'wp_enqueue_scripts', 'register_portfolio_styles' );
+function register_portfolio_styles() {
+	wp_register_style( 'portfolio-plug', plugins_url( 'portfolio-custom-post/css/style.css' ) );
+	wp_enqueue_style( 'portfolio-plug' );
+}
 
 
