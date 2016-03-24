@@ -138,12 +138,7 @@ class portfolio_post_widget extends WP_Widget {
         $defaults = array( 'sort' => 'latest', 'showportfolio' => true, 'numberPosts' => 4 );
         $instance = wp_parse_args( (array) $instance, $defaults ); ?>
          
-        <p>
-            <input class="radio" type="radio" <?php if($instance['display']=='older-posts') { ?>checked <?php } ?>name="<?php echo $this->get_field_name( 'display' ); ?>" value="older-posts" />
-            Order images from oldest to newest<br />
-            <input class="radio" type="radio" <?php if($instance['display']!='older-posts') { ?>checked <?php } ?>name="<?php echo $this->get_field_name( 'display' ); ?>" value="latest" />
-            Order images from newest to oldest
-        </p>  
+       
      
         <p>
             <input class="checkbox" type="checkbox" <?php checked(isset( $instance['showportfolio']) ? $instance['showportfolio'] : 0  ); ?> id="<?php echo $this->get_field_id( 'showportfolio' ); ?>" name="<?php echo $this->get_field_name( 'showportfolio' ); ?>" />
