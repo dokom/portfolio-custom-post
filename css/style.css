@@ -1,0 +1,29 @@
+/* Styling */
+
+#side-grid {
+	width: 100%;
+	padding: 2%;
+	margin: auto;
+	float: left;
+}
+
+.left,
+.right {
+	width: 50%;
+	margin: 0 auto;
+	float: left;
+}
+
+.clear {
+	clear:both;
+}
+
+ul.display-port {
+	list-style: none;
+	display: inline-block;
+}
+
+ul.display-port li {
+	width: 30%;
+	margin: auto;
+}
