@@ -12,6 +12,7 @@
 	width: 50%;
 	margin: 0 auto;
 	float: left;
+	padding: 5px;
 }
 
 .clear {
@@ -25,6 +26,13 @@ ul.display-port {
 
 ul.display-port li {
 	width: 30%;
-	margin: auto;
+	margin: 0 auto;
 	display: inline-block;
+	padding: 5px;
+}
+
+/* Typography */
+
+h2.portfolio-title {
+	font-size: 1em;
 }
