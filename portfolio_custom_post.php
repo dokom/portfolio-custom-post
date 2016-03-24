@@ -107,3 +107,56 @@ class portfolio_post_widget extends WP_Widget {
                     </div>
                      
                 <?php } ?>
+
+
+        </div>
+                                      
+        </div>
+         
+    <?php
+    }
+    function update( $new_instance, $old_instance ) {
+        $instance = $old_instance;
+         
+        $display = $instance['display'];
+        $showportfolio = $instance['showportfolio'];
+        $numberPosts = $instance['numberPosts'];        
+ 
+        // Strip tags and update settings
+        $instance['display'] = strip_tags( $new_instance['display'] );
+        $instance['showportfolio'] = isset( $new_instance['showportfolio'] );
+        $instance['numberPosts'] = strip_tags( $new_instance['numberPosts'] );
+ 
+        return $instance;
+    }
+    function form( $instance ) {
+ 
+        // Default settings
+        $defaults = array( 'sort' => 'latest', 'showportfolio' => true, 'numberPosts' => 4 );
+        $instance = wp_parse_args( (array) $instance, $defaults ); ?>
+         
+        <p>
+            <input class="radio" type="radio" <?php if($instance['display']=='older-posts') { ?>checked <?php } ?>name="<?php echo $this->get_field_name( 'display' ); ?>" value="older-posts" />
+            Order images from oldest to newest<br />
+            <input class="radio" type="radio" <?php if($instance['display']!='older-posts') { ?>checked <?php } ?>name="<?php echo $this->get_field_name( 'display' ); ?>" value="latest" />
+            Order images from newest to oldest
+        </p>  
+     
+        <p>
+            <input class="checkbox" type="checkbox" <?php checked(isset( $instance['showportfolio']) ? $instance['showportfolio'] : 0  ); ?> id="<?php echo $this->get_field_id( 'showportfolio' ); ?>" name="<?php echo $this->get_field_name( 'showportfolio' ); ?>" />
+            Display 
+            <input id="<?php echo $this->get_field_id( 'numberPosts' ); ?>" name="<?php echo $this->get_field_name( 'numberPosts' ); ?>" value="<?php echo $instance['numberPosts']; ?>" style="width:30px" />
+            Images                    
+             
+        </p>   
+         
+        <?php
+    }
+}
+
+add_action( 'widgets_init', function() {
+	register_widget( 'portfolio_post_widget' );
+} );
+
+
+
