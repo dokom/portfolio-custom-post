@@ -63,3 +63,47 @@ class portfolio_post_widget extends WP_Widget {
             $feedsort="date";
             $metakey="";
         }
+
+
+    // HTML Output
+        ?>
+             
+        <div id="portfolio-container">
+            <ul class="portnav">
+                <?php if($showportfolio) { ?><li><a href="#portfolio">Featured Images</a></li><?php } ?>
+            </ul>
+             
+            <div class="port-wrapper">
+         
+                <?php if($showportfolio) { ?>
+                     
+                    <div id="port" class="port-div">
+                        <ul>
+                            <?php // setup the query
+                            $args='&suppress_filters=true&posts_per_page='.$numberPosts.'&post_type=portfolio_posts&order=DESC&orderby='.$feedsort.$metakey;                               
+                            $widget_loop = new WP_Query($args); 
+                            if ($widget_loop->have_posts()) : while ($widget_loop->have_posts()) : $widget_loop->the_post(); $postcount++;
+                                // if we're sorting by date and this item does not have a date, hide it
+                                $older = get_post_meta(get_the_ID(), "Older", $single = true); 
+                                if(($older && $feedsort=="meta_value") || ($feedsort!="meta_value")) {                                     
+                                    ?>
+                                    <li>                                                                                  
+                                         
+                                        <?php portfolio_post_date($older); //show older posts ?> 
+                                         
+                                        <a class="post-title" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>                                                
+                                         
+                                    </li>
+                                     
+                                <?php } ?>
+                                 
+                            <?php endwhile; 
+                            endif; 
+                            wp_reset_query(); ?> 
+                             
+                            <li title="View all"><a href="/portfolio/">More</a></li>
+        
+                        </ul>
+                    </div>
+                     
+                <?php } ?>
