@@ -20,10 +20,11 @@
 
 ul.display-port {
 	list-style: none;
-	display: inline-block;
+	
 }
 
 ul.display-port li {
 	width: 30%;
 	margin: auto;
+	display: inline-block;
 }
