@@ -158,3 +158,28 @@ add_action( 'widgets_init', function() {
 
 
 
+
+function portfolio_short(){
+    $args = array(
+		'post_type' => 'portfolio',
+		'post_status' => 'publish'
+	);
+
+    $string = '';
+    $query = new WP_Query( $args );
+		if( $query->have_posts() ){
+        $string .= '<ul>';
+        while( $query->have_posts() ){
+			$query->the_post();
+			$string .= '<li><a href="'.get_permalink().'">' . get_the_post_thumbnail() . '</a></li>';
+            }
+            $string .= '</ul>';
+        }
+	wp_reset_postdata();
+	return $string;
+}
+add_shortcode( 'portfolio', 'portfolio_short' );
+
+
+
+
