@@ -117,10 +117,7 @@ class portfolio_post_widget extends WP_Widget {
 			
 			</div>
                      
-        <?php } ?>
-         
-    <?php
-    }
+        <?php }
     function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
          
