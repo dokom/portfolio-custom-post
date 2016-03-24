@@ -21,11 +21,12 @@
 
 ul.display-port {
 	list-style: none;
+	margin: 0 auto;
 	
 }
 
 ul.display-port li {
-	width: 30%;
+	width: 50%;
 	margin: 0 auto;
 	display: inline-block;
 	padding: 5px;
